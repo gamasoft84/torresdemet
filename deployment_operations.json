@@ -1,0 +1,32 @@
+[
+  {
+    "id": "/subscriptions/0bac287b-361c-4f41-acd7-237c1e91fe53/resourceGroups/web-resources-gama/providers/Microsoft.Resources/deployments/Microsoft.Web-StaticApp-Portal-28ac7bd3-9280/operations/8E97E7D6962D150F",
+    "operationId": "8E97E7D6962D150F",
+    "properties": {
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "timestamp": "2020-05-23T01:55:02.3732762Z",
+      "duration": "PT3.9198456S",
+      "trackingId": "1f1f11b6-8bce-400a-9634-99cde130425e",
+      "statusCode": "OK",
+      "targetResource": {
+        "id": "/subscriptions/0bac287b-361c-4f41-acd7-237c1e91fe53/resourceGroups/web-resources-gama/providers/Microsoft.Web/staticSites/torresdemet",
+        "resourceType": "Microsoft.Web/staticSites",
+        "resourceName": "torresdemet"
+      }
+    }
+  },
+  {
+    "id": "/subscriptions/0bac287b-361c-4f41-acd7-237c1e91fe53/resourceGroups/web-resources-gama/providers/Microsoft.Resources/deployments/Microsoft.Web-StaticApp-Portal-28ac7bd3-9280/operations/08586114079883088965",
+    "operationId": "08586114079883088965",
+    "properties": {
+      "provisioningOperation": "EvaluateDeploymentOutput",
+      "provisioningState": "Succeeded",
+      "timestamp": "2020-05-23T01:55:02.4437358Z",
+      "duration": "PT0.0304143S",
+      "trackingId": "e1a56698-c2d1-4acd-b93c-39da79513d8e",
+      "statusCode": "OK",
+      "statusMessage": null
+    }
+  }
+]
