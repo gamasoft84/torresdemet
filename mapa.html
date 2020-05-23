@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+            <title>
+                Unidad Torres Demet
+            </title>
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+            <style type="text/css">
+                .text-vertical {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
+.egt{
+    border-right: dashed;
+    border-left: dashed;
+    border-top: dashed;
+    border-bottom: dashed;
+}
+
+.tblEdificios{
+    border-right: dashed;
+    border-left: dashed;
+    border-top: dashed;
+    border-bottom: dashed;
+}
+
+.egt td {
+    padding: .2em .8em;
+    border: 1px solid rgba(16,76,167,0.25);
+    background: rgba(90,156,255,0.25);
+    text-align: left;
+    width: 70px;
+    height: 80px;
+}
+
+.noResaltar{
+    padding: .2em .8em;
+    border: 0px;
+    background: rgba(255,255,255);
+    text-align: left;
+    width: 70px;
+    height: 80px;
+}
+
+.resaltar {
+    border: 1px solid rgb(51,104,255);
+    background: rgba(15,126,165) !important;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}  
+
+.pasillo{
+    width: 50px;
+    border: none;
+    background: rgba(255,255,255);
+}
+
+.pasilloCorto{
+    width: 30px;
+    border: none;
+    background: rgba(255,255,255);
+}
+
+.edificio1{
+    vertical-align:top;
+    width: 50px;
+}
+
+.edificio2{
+    vertical-align:top;
+}
+
+
+.edificio3{
+    vertical-align:top;
+    width: 50px;
+}
+
+.edificio4{
+    vertical-align:top;
+     width: 100px;
+}
+
+.edificio5{
+    vertical-align:bottom;
+}
+
+.edificio6{
+    float: right;
+}
+
+.edificio7{
+    vertical-align:bottom;
+}
+
+.edificio8{
+    vertical-align:top;
+}
+
+.edificio9{
+    vertical-align:top;
+}
+
+.edificio10{
+    margin-left: : 50px;
+}
+
+.select{
+    font-size: 20px;
+}
+            </style>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/> 
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+            <script type="text/javascript">
+                $( document ).ready(function() {
+        console.log( "ready!" );
+        $('.mi-selector').select2();
+
+        var torres2 = new Array("Washington", "Brasilia", "Dacca","Yokohama","Hamburgo", "Guatemala",
+                                "Santo Domingo", "Bogotá", "Asunción","Luanda", "Tripoli", "Cairo","Buenos Aires","Tegucigalpa",
+                                "Quito","Caracas","San Salvador","Santiago","Montevideo","Toronto","Otawa","Nueva York",
+                                "Tunez","Minesota","Singapur","Siria","Eslovaquia","Sofia","Honolulú","El cabo","Camberra","Ankara",
+                                "Managua","Panamá","San José","Habana","Kingston",
+                                "Saigón","Pekin","Taipei","Bombay","Tokio","Teherán","San Juan","México",
+                                "Amsterdam","Copenhague","Bucarest",
+                                "Yakata","Damasco","Monaco","Seúl","Manila","Argel","Nueva Delhi","Atenas",
+                                "Viena","Berlín","Praga","Zurich",
+                                "Bruselas","Lisboa","Madrid","Paris","Londres","Roma",
+                                "Varsovia","Estocolmo","Belgrado","Bulgaria","","Oslo","","Berna","Estambúl","Moscú");
+
+    //Create List
+    $.each(torres2, function(i) {
+          if(torres2[i] != ''){
+                //Create select list
+                var option = $('<option/>').attr("value","id" + torres2[i].replace(' ',''))                                        
+                                           .text(torres2[i]).appendTo($("#cbxEdificios"));
+          }       
+    });
+
+        var configuration = [[2,0,5],[8,6,21],[2,22,31],[1,32,36],[2,37,44],[1,45,47],[2,48,55],[2,56,59],[4,60,65],[2,66,75]];
+        $.each(configuration, function(i) {
+            var numCols = configuration[i][0]; 
+            var auxCols = 0;
+
+            $.each(torres2, function(j) {
+                    if(j<=configuration[i][2] && j>=configuration[i][1]){
+                        if(!(auxCols%numCols)) 
+                            tRow = $('<tr>');
+                        tCell = $('<td>').attr("title", (i+1))
+                                         .attr("id", "id" + torres2[j].replace(' ',''))
+                                         .attr("onclick","selectionDepartamentById('" +"id" + torres2[j].replace(' ','') + "')");
+
+                        div = $('<div>').text(torres2[j]);                      
+                        tCell.append(div);
+
+                        $('#tbl_' + (i+1)).append(tRow.append(tCell));
+                        auxCols = auxCols + 1;
+                    }
+                  
+                });
+            });
+
+    });
+
+    
+
+    function selectionDepartament(departament){
+        var selection = $("#cbxEdificios").val();
+        $('table td').removeClass("resaltar")
+        $("#" +selection).addClass("resaltar"); 
+    }
+
+    function selectionDepartamentById(departament){
+        $('table td').removeClass("resaltar")
+        $("#" + departament).addClass("resaltar");  
+    }
+
+     $("td").click(function() { 
+        console.info("aplica efecto")
+          $(this).animate({
+          backgroundColor: "#aa0000",
+          color: "#fff",
+        }, 1000 );
+    });
+            </script>
+        </meta>
+    </head>
+    <body>
+        <div class="container container-fluid clearfix">
+          
+            <div class="row align-items-center">
+                <div class="col-xs-12  col-sm-6   col-md-6 col-lg-6 col-xl-6 display-4 float-right">
+                    <span class="float-md-right">Edificio:</span>
+                    
+                </div>
+                <div class="col-xs-12  col-sm-6   col-md-6 col-lg-6 col-xl-6">
+                    <div class="float-left">
+                        <select class="mi-selector float-right" id="cbxEdificios" onchange="selectionDepartament()" style="width: 300px !important">
+                            <option value="">
+                                -- Seleccionar edificio --
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+           
+            <br/>
+            <br/>
+
+            <div class="row"> 
+                <div class="col-xs-12  col-sm-6   col-md-4 col-lg-4 col-xl-8">
+                    <table border="0" id="tblEdificios">
+                        <tr>
+                            <td class="edificio2" colspan="5">
+                                <table class="egt" id="tbl_2">
+                                </table>
+                            </td>
+                            <td class="pasilloCorto" colspan="1">
+                            </td>
+                            <td class="edificio6" colspan="1">
+                                <table class="egt" id="tbl_6">
+                                </table>
+                            </td>
+                            <td class="pasillo">
+                            </td>
+                            <td class="edificio8">
+                                <table class="egt" id="tbl_8">
+                                </table>
+                            </td>
+                            <td class="pasillo">
+                            </td>
+                            <td class="edificio9">
+                                <table class="egt" id="tbl_9">
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="edificio1">
+                                <table class="egt" id="tbl_1">
+                                </table>
+                            </td>
+                            <td class="pasillo">
+                            </td>
+                            <td class="edificio3">
+                                <table class="egt" id="tbl_3">
+                                </table>
+                            </td>
+                            <td class="pasilloCorto">
+                            </td>
+                            <td class="edificio4" colspan="1">
+                                <table class="egt" id="tbl_4">
+                                </table>
+                            </td>
+                            <td class="edificio5" colspan="2">
+                                <table class="egt" id="tbl_5">
+                                </table>
+                            </td>
+                            <td class="pasillo">
+                            </td>
+                            <td class="edificio7">
+                                <table class="egt" id="tbl_7">
+                                </table>
+                            </td>
+                            <td class="pasillo">
+                            </td>
+                            <td class="edificio10">
+                                <table class="egt" id="tbl_10">
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>           
+            <br/>
+            <div class="row clearfix"> 
+                <div class="justify-content-center">
+                    <div class="col float-center">--------------------------------------------------------------------------</div>
+                    <div class="col justify-content-center">M&eacute;xico - Tacuba</div>
+                    <div class="col float-center">---------------------------------------------------------------------------</div>
+                </div>                
+            </div>
+      
+        </div>
+
+        
+
+    </body>
+</html>
